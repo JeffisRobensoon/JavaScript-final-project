@@ -47,17 +47,49 @@ async function fetchMovies(searchTerm) {
     currentMovies = [];
   }
 }
-// function displayMovies(movies) {
-//   const movieResults = movies.map((movie) => {
-//     const poster = movie.Poster !== 'N/A' ? movie.Poster : '';
 
-//     return `
-//     <div class="movie-card">
-//           <img class="movie-card__img" src="https://m.media-amazon.com/images/M/MV5BZTA4ZmZlZWQtZDRlYS00ZWZhLTk0MzEtYjExMGIzMTBlZDNlXkEyXkFqcGc@._V1_SX300.jpg" alt="">
-//           <h2 class="movie-card__title">The Avengers</h2>
-//           <p class="movie-card__year">1998</p>
-//         </div>
-//         `;
-//   }).join('');
-// }
+function displayMovies(movies) {
+   const movieResults = movies.map((movie) => {
+     const poster = movie.Poster !== 'N/A' ? movie.Poster : '';
+
+    return `
+     <div class="movie-card">
+          ${poster ? `<img class="movie-card__img" src="${poster}" alt="${movie.Title}"> :
+          <h2 class="movie-card__title">${movie.Title}</h2>
+          <p class="movie-card__year">${movie.Year}</p>
+      </div>
+        `
+    }).join('');
+
+   moviesGrid.innerHTML = movieResults;
+
+moviesGrid. querySelectorAll('.movie-card__img').forEach(img => {
+  img.addEventListener('error', () => {
+    const placeholder = document.createElement('div');
+    placeholder.className = 'movie-card__poster-placeholder';
+    placeholder.innerHTML = 'movie Poster<br>Not Available';
+  })
+})
+
+sortSelect.addEventListener('change', (e) => {
+  sortMovies(e.target.value);
+});
+
+function sortMovies(sortType) {
+let sortedMovies = [...currentMovies];
+
+if (sortType ==='a-z') {
+  sortedMovies.sort((a, b) => a.Title.localeCompare(b.Title));
+} else if (sortType === 'z-a') {
+  sortedMovies.sort((b, a) => b.Title.localeCompare(a.Title));
+} else if (sortType === 'newest') {
+ sortedMovies.sort((a, b) => Number(b.Year) - Number(a.Year))
+} else if (sortType === 'oldest') {
+  sortedMovies.sort((b, a) => Number(a.Year) - Number(b.Year))
+}
+
+}
+displayMovies(sortedMovies);
+
+fetchMovies('Avengers');
 
