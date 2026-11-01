@@ -73,6 +73,7 @@ moviesGrid. querySelectorAll('.movie-card__img').forEach(img => {
     placeholder.innerHTML = 'movie Poster<br>Not Available';
   })
 })
+
 sortSelect.addEventListener('change', (e) => {
   sortMovies(e.target.value);
 });
