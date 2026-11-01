@@ -11,7 +11,7 @@ let currentMovies = [];
 
 searchForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  const searchTerm = searchInput.ariaValueMax.trim();
+  const searchTerm = searchInput.Value.trim();
   if (searchTerm) {
     fetchMovies(searchTerm);
   }
@@ -20,8 +20,8 @@ searchForm.addEventListener('submit', (e) => {
 function showSkeletons() {
   const skeletons = Array(10).fill(0).map(() => 
   `<div class="movie-card movie-card--skeleton">
-  <div class="movie-card__img movie-card__img--skeleton></div>
-  <div class=movie-card__title movie-card__title--skeleton"></div>
+  <div class="movie-card__img movie-card__img--skeleton"></div>
+  <div class="movie-card__title movie-card__title--skeleton"></div>
   <div class="movie-card__year movie-card__year--skeleton"></div>
   </div>
   `).join('');
@@ -36,7 +36,7 @@ async function fetchMovies(searchTerm) {
   const data = await res.json();
 
   if (data.Response === 'True') {
-    currentMovies = data.search;
+    currentMovies = data.Search;
     resultsInfo.textContent = `Showing: ${searchTerm}`;
     sortSelect.value = 'default';
     displayMovies(currentMovies);
@@ -60,7 +60,8 @@ function displayMovies(movies) {
       </div>
         `
     }).join('');
-
+  
+  }
    moviesGrid.innerHTML = movieResults;
 
 moviesGrid. querySelectorAll('.movie-card__img').forEach(img => {
@@ -81,15 +82,14 @@ let sortedMovies = [...currentMovies];
 if (sortType ==='a-z') {
   sortedMovies.sort((a, b) => a.Title.localeCompare(b.Title));
 } else if (sortType === 'z-a') {
-  sortedMovies.sort((b, a) => b.Title.localeCompare(a.Title));
+  sortedMovies.sort((a, b) => b.Title.localeCompare(a.Title));
 } else if (sortType === 'newest') {
- sortedMovies.sort((a, b) => Number(b.Year) - Number(a.Year))
+ sortedMovies.sort((a, b) => parseInt(b.Year) - ParseInt(a.Year))
 } else if (sortType === 'oldest') {
-  sortedMovies.sort((b, a) => Number(a.Year) - Number(b.Year))
+  sortedMovies.sort((a, b) => parseInt(a.Year) - parseInt(b.Year))
+}
+ displayMovies(sortedMovies);
 }
 
-}
-displayMovies(sortedMovies);
 
 fetchMovies('Avengers');
-
