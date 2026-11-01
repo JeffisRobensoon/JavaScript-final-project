@@ -69,7 +69,7 @@ function displayMovies(movies) {
   img.addEventListener('error', () => {
     const placeholder = document.createElement('div');
     placeholder.className = 'movie-card__poster-placeholder';
-    placeholder.innerHTML = 'movie Poster<br>Not Available';
+    placeholder.innerHTML = img.replaceWith(placeholder);
   })
 })
 }
