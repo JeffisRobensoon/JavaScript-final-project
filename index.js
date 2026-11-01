@@ -51,8 +51,8 @@ async function fetchMovies(searchTerm) {
 function displayMovies(movies) {
    const movieResults = movies.map((movie) => {
      const posterHTML = movie.Poster !== 'N/A' 
-     ?<img class="movie-card__img" src="${movie.Poster}" alt="${movie.Title"></img>
-     :<div class="movie-card__poster-placeholder">Movie Poster<br>Not Available</br></div>
+     ? `<img class="movie-card__img" src="${movie.Poster}" alt="${movie.Title}"></img>`
+     : `<div class="movie-card__poster-placeholder">Movie Poster<br>Not Available</br></div>`;
 
     return `
      <div class="movie-card">
