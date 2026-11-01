@@ -63,16 +63,16 @@ function displayMovies(movies) {
     `;
    }).join('');
       
-  }
    moviesGrid.innerHTML = movieResults;
 
-moviesGrid. querySelectorAll('.movie-card__img').forEach(img => {
+  moviesGrid. querySelectorAll('.movie-card__img').forEach(img => {
   img.addEventListener('error', () => {
     const placeholder = document.createElement('div');
     placeholder.className = 'movie-card__poster-placeholder';
     placeholder.innerHTML = 'movie Poster<br>Not Available';
   })
 })
+}
 
 sortSelect.addEventListener('change', (e) => {
   sortMovies(e.target.value);
