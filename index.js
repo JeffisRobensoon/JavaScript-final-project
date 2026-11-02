@@ -93,5 +93,4 @@ if (sortType ==='a-z') {
  displayMovies(sortedMovies);
 }
 
-
 fetchMovies('Avengers');
