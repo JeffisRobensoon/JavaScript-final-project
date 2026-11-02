@@ -86,7 +86,7 @@ if (sortType ==='a-z') {
 } else if (sortType === 'z-a') {
   sortedMovies.sort((a, b) => b.Title.localeCompare(a.Title));
 } else if (sortType === 'newest') {
- sortedMovies.sort((a, b) => parseInt(b.Year) - ParseInt(a.Year))
+ sortedMovies.sort((a, b) => parseInt(b.Year) - parseInt(a.Year))
 } else if (sortType === 'oldest') {
   sortedMovies.sort((a, b) => parseInt(a.Year) - parseInt(b.Year))
 }
