@@ -11,7 +11,7 @@ let currentMovies = [];
 
 searchForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  const searchTerm = searchInput.Value.trim();
+  const searchTerm = searchInput.value.trim();
   if (searchTerm) {
     fetchMovies(searchTerm);
   }
